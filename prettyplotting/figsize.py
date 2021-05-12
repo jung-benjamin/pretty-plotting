@@ -24,8 +24,10 @@ def set_size(width, fraction=1, subplots=(1, 1), higher=False):
             Dimensions of figure in inches
     """
     
-    if width == 'book':
+    if width == 'mythesis':
         width_pt = 426.79
+    elif width == 'a4paper-default':
+        width_pt = 360.0
     elif width == 'twocolumn':
         width_pt = 252.
     elif width == 'beamer':
