@@ -22,7 +22,7 @@ def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
         Configuration of subplots in the figure
     
     ratio 
-        int or string, optional
+        float or string, optional
         ratio of the x and y directions of the plots
 
     Returns
