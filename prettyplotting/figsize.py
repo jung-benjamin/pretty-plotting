@@ -2,6 +2,12 @@
 
 """Adjust the figsize to LaTeX"""
 
+
+BEAMER_PT = 577.17543
+A4Paper_DEFAULT_PT = 360.0
+TWOCOLUMN_PT = 252.0
+MYTHESIS_PT = 426.79
+
 def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
     """Set figure dimensions to avoid scaling in LaTeX.
 
@@ -40,6 +46,8 @@ def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
         width_pt = 252.
     elif width == 'beamer':
         width_pt = 577.17543
+    elif width == 'halfbeamer':
+        width_pt = 288.587715
     else:
         width_pt = width
         
