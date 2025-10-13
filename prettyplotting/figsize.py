@@ -1,14 +1,23 @@
 #! /usr/bin/env python3
-
 """Adjust the figsize to LaTeX"""
 
+WIDTH_OPTIONS = {
+    "mythesis": 426.79,
+    "a4paper-default": 360.0,
+    "twocolumn": 252.0,
+    "beamer": 577.17543,
+}
 
 BEAMER_PT = 577.17543
 A4Paper_DEFAULT_PT = 360.0
 TWOCOLUMN_PT = 252.0
 MYTHESIS_PT = 426.79
 
-def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
+
+def set_size(width="a4paper-default",
+             fraction=1,
+             subplots=(1, 1),
+             ratio='golden'):
     """Set figure dimensions to avoid scaling in LaTeX.
 
     Parameters
@@ -37,20 +46,15 @@ def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
         tuple
         Dimensions of figure in inches
     """
-    
-    if width == 'mythesis':
-        width_pt = 426.79
-    elif width == 'a4paper-default':
-        width_pt = 360.0
-    elif width == 'twocolumn':
-        width_pt = 252.
-    elif width == 'beamer':
-        width_pt = 577.17543
-    elif width == 'halfbeamer':
-        width_pt = 288.587715
-    else:
-        width_pt = width
-        
+
+    match width:
+        case str() if width in WIDTH_OPTIONS:
+            width_pt = WIDTH_OPTIONS[width]
+        case float() | int():
+            width_pt = width
+        case _:
+            raise ValueError(f'Invalid width option {width}')
+
     # Width of figure (in pts)
     fig_width_pt = width_pt * fraction
 
@@ -69,7 +73,7 @@ def set_size(width, fraction=1, subplots=(1, 1), ratio='golden'):
     # Figure width in inches
     fig_width_in = fig_width_pt * inches_per_pt
     # Figure height in inches
-    
+
     fig_height_in = fig_width_in * ratio_num * (subplots[0] / subplots[1])
     fig_dim = (fig_width_in, fig_height_in)
 
