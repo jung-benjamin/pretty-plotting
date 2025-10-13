@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prettyplotting"
+version = "0.2.0"
+description = "Some plotting utilities that I like."
+readme = "README.md"
+authors = [{ name = "Benjamin Jung" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["matplotlib"]
+
+[tool.setuptools.packages.find]
+include = ["prettyplotting", "prettyplotting.*"]
+
+[tool.setuptools.package-data]
+"prettyplotting" = ["rwth_colors.json"]
