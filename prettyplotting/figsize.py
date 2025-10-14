@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 """Adjust the figsize to LaTeX"""
 
+from . import config
+
 WIDTH_OPTIONS = {
     "mythesis": 426.79,
     "a4paper-default": 360.0,
@@ -13,8 +15,10 @@ A4Paper_DEFAULT_PT = 360.0
 TWOCOLUMN_PT = 252.0
 MYTHESIS_PT = 426.79
 
+CONFIG = config.load_config()
 
-def set_size(width="a4paper-default",
+
+def set_size(width=CONFIG.get("page-geometry", {}).get("text_width", 360.0),
              fraction=1,
              subplots=(1, 1),
              ratio='golden'):
